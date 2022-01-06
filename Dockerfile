@@ -138,10 +138,10 @@ RUN rm -rf /var/cache/apk/* && \
     rm -fr /var/www/foswiki/working/configure/download/* && \
     rm -fr /var/www/foswiki/working/configure/backup/* && \
     mkdir -p /run/nginx && \
-    mkdir -p /etc/nginx/conf.d && \
+    mkdir -p /etc/nginx/http.d && \
     chown -R nginx:nginx /var/www/foswiki
 
-COPY nginx.default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.default.conf /etc/nginx/http.d/default.conf
 COPY docker-entrypoint.sh docker-entrypoint.sh
 COPY iwatch.xml /etc/iwatch.xml
 
