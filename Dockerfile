@@ -2,11 +2,11 @@ FROM alpine:edge
 
 ENV PERL_MM_USE_DEFAULT 1
 
-ENV FOSWIKI_LATEST_URL https://github.com/foswiki/distro/releases/download/FoswikiRelease02x01x06/Foswiki-2.1.6.tgz
+ENV FOSWIKI_LATEST_URL https://github.com/foswiki/distro/releases/download/FoswikiRelease02x01x07/Foswiki-2.1.7.tgz
 
-ENV FOSWIKI_LATEST_MD5 706fc6bf1fa6df6bfbe8a079c5007aa3
+ENV FOSWIKI_LATEST_SHA1 cacdd16cbb8ce31306aeb8db47ba6d7c792d7132
 
-ENV FOSWIKI_LATEST Foswiki-2.1.6
+ENV FOSWIKI_LATEST Foswiki-2.1.7
 
 RUN rm -rf /var/cache/apk/* && \
     rm -rf /tmp/* && \
@@ -18,7 +18,7 @@ RUN rm -rf /var/cache/apk/* && \
         db make gcc db-dev musl-dev \
         grep unzip wget zip perl perl-algorithm-diff perl-algorithm-diff-xs \
         perl-apache-logformat-compiler perl-archive-zip perl-authen-sasl \
-        perl-authcas perl-db perl-cache-cache perl-cgi perl-cgi-session \
+        perl-authcas perl-cache-cache perl-cgi perl-cgi-session \
         perl-class-accessor perl-convert-pem perl-crypt-eksblowfish \
         perl-crypt-jwt perl-crypt-openssl-bignum perl-crypt-openssl-dsa \
         perl-crypt-openssl-random perl-crypt-openssl-rsa \
@@ -49,13 +49,13 @@ RUN rm -rf /var/cache/apk/* && \
         perl-xml-sig iwatch perl-http-anyua perl-webservice-slack-webapi perl-dev  --update-cache && \
         # perl-libapreq2 -- Apache2::Request - Here for completeness but we use nginx \
     rm -fr /var/cache/apk/APKINDEX.* && \
-    perl -MCPAN -e 'install DB_File' && \
+    perl -MCPAN -e 'install BerkeleyDB,DB_File' && \
     perl -MCPAN -e "CPAN::Shell->notest('install', 'DB_File::Lock')" && \
     apk del make gcc musl-dev perl-dev db-dev && \
     touch /root/.bashrc && \
     wget ${FOSWIKI_LATEST_URL} && \
-    echo "${FOSWIKI_LATEST_MD5}  ${FOSWIKI_LATEST}.tgz" > ${FOSWIKI_LATEST}.tgz.md5 && \
-    md5sum -cs ${FOSWIKI_LATEST}.tgz.md5 && \
+    echo "${FOSWIKI_LATEST_SHA1}  ${FOSWIKI_LATEST}.tgz" > ${FOSWIKI_LATEST}.tgz.sha1 && \
+    sha1sum -cs ${FOSWIKI_LATEST}.tgz.sha1 && \
     mkdir -p /var/www && \
     mv ${FOSWIKI_LATEST}.tgz /var/www && \
     cd /var/www && \
