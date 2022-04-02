@@ -4,6 +4,7 @@
 
    * [docker-foswiki, with Solr and NatSkin, multi-instances and Traefik ready](#docker-foswiki-with-solr-and-natskin-multi-instances-and-traefik-ready)
       * [Support](#support)
+      * [Upgrade for latest Foswiki Version](#upgrade-for-latest-foswiki-version)
       * [Why I created this dockerfile?](#why-i-created-this-dockerfile)
       * [First run](#first-run)
          * [Resetting the Admin Password](#resetting-the-admin-password)
@@ -33,6 +34,22 @@
 ## Support
 
 Log an issue or drop by the #timlegge-docker-foswiki irc channel on Freenode
+
+## Upgrade for latest Foswiki Version
+
+The container now includes Foswiki-2.1.7. However if you are using it with persistent volumes as recommended you will not get the latest version simply by grabbing the latest container.
+
+The steps below will walk you through it:
+
+   1. Download the upgrade: https://github.com/foswiki/distro/releases/download/FoswikiRelease02x01x07/Foswiki-upgrade-2.1.7.tgz
+   2. Copy it to your docker volumme (eg. /var/lib/docker/volumes/foswiki_foswiki_www/_data/)
+   3. docker exec -it docker-foswiki /bin/bash
+   4. cd /var/www/foswiki
+   5. tar --strip-components=1 -zxf /path/to/Foswiki-upgrade-2.1.7.tgz
+   6. cd tools
+   7. ./configure --save
+
+See https://foswiki.org/Download/FoswikiRelease02x01x07 for more details
 
 ## Why I created this dockerfile?
 
