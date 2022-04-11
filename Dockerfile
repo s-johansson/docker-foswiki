@@ -42,7 +42,7 @@ RUN rm -rf /var/cache/apk/* && \
         #perl-sereal perl-test-leaktrace perl-text-unidecode perl-text-soundex \
         perl-text-unidecode perl-text-soundex \
         perl-time-parsedate perl-type-tiny perl-uri perl-www-mechanize \
-        perl-xml-easy perl-xml-generator perl-xml-parser \
+        perl-xml-easy perl-xml-enc perl-xml-generator perl-xml-parser \
         perl-xml-tidy perl-xml-writer perl-xml-xpath perl-yaml perl-yaml-tiny \
         perl-file-mmagic perl-net-saml2 imagemagick-perlmagick graphviz \
         odt2txt antiword lynx poppler-utils perl-email-address-xs perl-chi \
