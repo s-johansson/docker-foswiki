@@ -15,7 +15,7 @@ RUN rm -rf /var/cache/apk/* && \
     apk upgrade && \
     apk add --update && \
     apk add ca-certificates imagemagick mailcap musl nginx openssl tzdata bash \
-        db make gcc db-dev musl-dev \
+        db htmldoc make gcc db-dev musl-dev \
         grep unzip wget zip perl perl-algorithm-diff perl-algorithm-diff-xs \
         perl-apache-logformat-compiler perl-archive-zip perl-authen-sasl \
         perl-authcas perl-cache-cache perl-cgi perl-cgi-session \
@@ -131,6 +131,7 @@ RUN rm -rf /var/cache/apk/* && \
     tools/extension_installer WebFontsContrib -r -enable install && \
     tools/extension_installer WorkflowPlugin -r -enable install && \
     tools/extension_installer XSendFileContrib -r -enable install && \
+    tools/extension_installer GenPDFAddOn -r -enable install && \
     tools/configure -save -set {Plugins}{AutoViewTemplatePlugin}{Enabled}='0' && \
     tools/configure -save -set {Plugins}{LdapNgPlugin}{Enabled}='0' && \
     tools/configure -save -set {XSendFileContrib}{Header}='X-Accel-Redirect' && \
