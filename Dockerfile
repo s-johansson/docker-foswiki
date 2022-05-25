@@ -44,7 +44,7 @@ RUN rm -rf /var/cache/apk/* && \
         perl-time-parsedate perl-type-tiny perl-uri perl-www-mechanize \
         perl-xml-easy perl-xml-enc perl-xml-generator perl-xml-parser \
         perl-xml-tidy perl-xml-writer perl-xml-xpath perl-yaml perl-yaml-tiny \
-        perl-file-mmagic perl-net-saml2 imagemagick-perlmagick graphviz \
+        perl-file-mmagic perl-file-mmagic-xs perl-net-saml2 imagemagick-perlmagick graphviz \
         odt2txt antiword lynx poppler-utils perl-email-address-xs perl-chi \
         perl-xml-sig iwatch perl-http-anyua perl-webservice-slack-webapi perl-dev  --update-cache && \
         # perl-libapreq2 -- Apache2::Request - Here for completeness but we use nginx \
