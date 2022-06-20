@@ -1,3 +1,14 @@
+FROM alpine:edge as unpackaged_plugins
+
+ADD plugins /tmp/plugins
+
+RUN mkdir /var/tmp/plugins
+
+RUN for plugin in $(ls /tmp/plugins/); do \
+    cp -R /tmp/plugins/$plugin/* /var/tmp/plugins/; \
+    done
+    
+
 FROM alpine:edge
 
 ENV PERL_MM_USE_DEFAULT 1
@@ -141,6 +152,8 @@ RUN rm -rf /var/cache/apk/* && \
     mkdir -p /run/nginx && \
     mkdir -p /etc/nginx/http.d && \
     chown -R nginx:nginx /var/www/foswiki
+
+COPY --from=unpackaged_plugins --chown=nginx:nginx /var/tmp/plugins /var/www/foswiki/
 
 COPY nginx.default.conf /etc/nginx/http.d/default.conf
 COPY docker-entrypoint.sh docker-entrypoint.sh
